@@ -8,10 +8,7 @@ const App = () => {
             .then((data) => {  setNoteList(data);});
     }, []);
     return (
-        <>
-            {noteList.length > 0 ? "component" : <Preloader/> }
-        </>
+        <>    {noteList.length > 0 ? "component" : <Preloader/>}    </>
     );
 };
-
 export default App;
