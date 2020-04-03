@@ -1,6 +1,7 @@
 import React from 'react';
 import './Preloader/Preloader'
 import Preloader from "./Preloader/Preloader";
+import NoteList from "./NoteList/NoteList";
 
 const Actual = ({setNoteList,noteList}) => {
     console.log("actualda",noteList.length);
@@ -10,7 +11,7 @@ const Actual = ({setNoteList,noteList}) => {
     }
     return (
         <>
-            {noteList.length > 0 ? "nodelist" : <Preloader/> }
+            {noteList.length > 0 ? <NoteList data={dataFilter} noteList={noteList} setNoteList={setNoteList}  /> : <Preloader/> }
         </>
     );
 };

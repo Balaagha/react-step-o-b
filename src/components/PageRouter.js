@@ -10,6 +10,7 @@ const PageRouter = ({setNoteList,noteList}) => {
                 <Route path={"/"} exact><Actual setNoteList={setNoteList} noteList={noteList} /></Route>
                 <Route path={"/archive"} ><Archive setNoteList={setNoteList} noteList={noteList} /></Route>
                 <Route path={"/create"} ><Create setNoteList={setNoteList} noteList={noteList} /></Route>
+                <Route path={"/notes/:id"} >notes</Route>
             </Switch>
         </>
     );
