@@ -3,6 +3,7 @@ import {Route,Switch} from 'react-router-dom'
 import Create from "./Create/Create";
 import Actual from "./Actual";
 import Archive from "./Archive";
+import SingleNoteCard from "./SingleNoteCard/SingleNoteCard";
 const PageRouter = ({setNoteList,noteList}) => {
     return (
         <>
@@ -10,7 +11,7 @@ const PageRouter = ({setNoteList,noteList}) => {
                 <Route path={"/"} exact><Actual setNoteList={setNoteList} noteList={noteList} /></Route>
                 <Route path={"/archive"} ><Archive setNoteList={setNoteList} noteList={noteList} /></Route>
                 <Route path={"/create"} ><Create setNoteList={setNoteList} noteList={noteList} /></Route>
-                <Route path={"/notes/:id"} >notes</Route>
+                <Route path={"/notes/:id"} ><SingleNoteCard setNoteList={setNoteList} noteList={noteList} /></Route>
             </Switch>
         </>
     );
