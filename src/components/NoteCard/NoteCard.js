@@ -7,7 +7,6 @@ class NoteCard extends Component {
         console.log(note);
         return (
 
-
                 <div className="note-card-container">
                     <div/* style={{backgroundColor: this.props.colors.border}}*/ className="note-card-title">
                         {note.noteTitle}

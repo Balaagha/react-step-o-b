@@ -1,27 +1,74 @@
-import React from 'react';
+import React,{useState,useRef} from 'react';
+import {useHistory } from 'react-router-dom'
 import axios from 'axios';
-const Create = ({setNoteList,noteList}) => {
+import './Create.scss'
+const Create = (props) => {
+    const {setNoteList,noteList} = props;
+    const history = useHistory();
+    const button = useRef();
     const dataNode = noteList;
-    const data = {
-        completed: "notCompleted",
-        noteTitle: "New",
-        noteText: "lorem dasd lore asd ",
+    const [state,setState] = useState( {
+        data:{
+            completed: "notCompleted",
+            noteTitle: "",
+            noteText: ""
+        },
         colors: {
             border: "#B6D4AC",
             bg: "#D5E8D4"
+        },
+        submitState:false
+    });
+    const formSubmitHandler = (e)=>{
+        e.preventDefault();
+        const sendReq = {...state.data,colors:state.colors}
+        axios.post('http://localhost:3003/posts',sendReq)
+            .then(respond => {
+                dataNode.push(respond.data);
+                setNoteList(dataNode);
+                history.push('/');
+            });
+    }
+    const colorsClickHandler=(e)=>{
+        e.preventDefault();
+        for(let i of button.current.children){  i.classList.remove("active");  }
+        e.target.classList.add('active');
+        setState({ ...state,
+            colors: {border: e.target.getAttribute('data-border'),bg: e.target.getAttribute('data-bg')}
+        });
+    }
+    const formChangeHandle =(e)=>{
+        const data = { ...state.data, [e.target.name]: e.target.value};
+        if (Object.keys(data).every(k => data[k].length > 0)){
+            setState({ ...state,data:{...data},submitState:true });
+        } else{
+            setState({ ...state,data:{...data},submitState:false });
         }
-    };
-    const addNotes = async ()=>{
-        const respond = await axios.post('http://localhost:3003/posts',data);
-        console.log("create de log",respond.data);
-        dataNode.push(respond.data);
-        console.log("create de log",dataNode);
-        setNoteList(dataNode);
-    };
+    }
     return (
-        <>
-            <button onClick={addNotes}>Add</button>
-        </>
+        <div className={'container'}>
+            <h1>Fill Data</h1>
+            <form onSubmit={formSubmitHandler} onChange={formChangeHandle} className={'crate-form'}>
+                <div className={"form-control"}>
+                    <input name={"noteTitle"} type="text"   placeholder="Note Title"/>
+                </div>
+                <div className="form-control">
+                    <textarea name={"noteText"} cols="30" rows="10" placeholder="Note Text"/>
+                </div>
+                <div className={'colors-wrapper'}>
+                    <span>Colors : </span>
+                    <div className={'button-wrapper'} ref={button}>
+                        <button data-border={'#B6D4AC'} data-bg={'#D5E8D4'} onClick={colorsClickHandler} className={'green btn'}/>
+                        <button data-border={'#A3B9D8'} data-bg={'#DAE8FC'} onClick={colorsClickHandler} className={'blue btn'}/>
+                        <button data-border={'#EDD899'} data-bg={'#FFF2CC'} onClick={colorsClickHandler} className={'yellow btn'}/>
+                        <button data-border={'#A3B9D8'} data-bg={'#F8CECC'} onClick={colorsClickHandler} className={'red btn'}/>
+                    </div>
+                </div>
+                <div className="form-control">
+                    <input disabled={!state.submitState} type="submit" value={'Create'}/>
+                </div>
+            </form>
+        </div>
     );
 };
 
