@@ -8,6 +8,7 @@ class NoteList extends Component {
        const cards=notes.map((note)=>{
         return (
             <NoteCard
+                noteColor={note.colors}
                 noteTitle={note.noteTitle}
                 noteText={note.noteText}
             />
