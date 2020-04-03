@@ -6,7 +6,7 @@ const Navbar = () => {
         <div className={'nav-container'}>
             <Link to={'/'} >Actual </Link>
             <Link to={'/archive'} >Archive </Link>
-            <Link to={'/nodes/25'} >singlenodes </Link>
+            <Link to={'/notes/25'} >SingleNoteCard</Link>
             <Link to={'/create'} >Create </Link>
         </div>
     );
