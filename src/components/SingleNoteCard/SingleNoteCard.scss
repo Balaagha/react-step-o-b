@@ -29,6 +29,9 @@
   background-color: white;
   cursor: pointer;
 }
+.archive-btn.active{
+  background-color: #d5e8d4;
+}
 
 .single-note-item{
   display: flex;
