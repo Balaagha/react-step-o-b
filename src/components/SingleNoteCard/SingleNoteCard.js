@@ -1,10 +1,10 @@
-import React from 'react';
+import React,{useRef} from 'react';
 import {Link} from "react-router-dom";
 import {useParams } from 'react-router-dom';
 import Preloader from "../Preloader/Preloader";
 import "./SingleNoteCard.scss";
 const SingleNoteCard = ({setNoteList,noteList}) => {
-
+    const archive = useRef();
     let dataFilter = '';
     console.log(noteList);
     const {id} = useParams();
@@ -12,41 +12,30 @@ const SingleNoteCard = ({setNoteList,noteList}) => {
         dataFilter = noteList.filter(item=>item.id===id);
     }
     console.log("data filter",dataFilter[0]);
-
     if (dataFilter[0]){
         console.log('id',dataFilter[0].id);
         const linkTarget= `/edit/${dataFilter[0].id}`;
         console.log(dataFilter[0].colors);
-
         const addArchive = () =>{
-           console.log("addarchive ishleyir");
-           if (dataFilter[0].completed==="notCompleted"){
-               fetch(`http://localhost:3003/posts/${dataFilter[0].id}`, {
-                   method: "PATCH",
-                   body: JSON.stringify({
-                       completed: "Completed"
-                   }),
-                   headers: {
-                       "Content-type": "application/json"}
-               })
-                   .then(response => response.json())
-                   .then(json => console.log(json));
-
-           }
-           else {
-               fetch(`http://localhost:3003/posts/${dataFilter[0].id}`, {
-                   method: "PATCH",
-                   body: JSON.stringify({
-                       completed: "notCompleted"
-                   }),
-                   headers: {
-                       "Content-type": "application/json"}
-               })
-                   .then(response => response.json())
-                   .then(json => console.log(json));
-           }
+            console.log("addarchive ishleyir");
+            if (dataFilter[0].completed==="notCompleted"){
+                fetch(`http://localhost:3003/posts/${dataFilter[0].id}`, {
+                    method: "PATCH",
+                    body: JSON.stringify({
+                        completed: "Completed"
+                    }),
+                    headers: {
+                        "Content-type": "application/json"}
+                })
+                    .then(response => response.json())
+                    .then(respond => {
+                        let dataSend = noteList.filter(item=>item.id!==dataFilter[0].id);
+                        archive.current.classList.add("active");
+                        dataSend.push(respond);
+                        setNoteList(dataSend);
+                    });
+            }
         };
-
         return (
             <div className="single-note-container">
                 <div style={{backgroundColor: dataFilter[0].colors.bg}} className="single-note-item">
@@ -55,9 +44,11 @@ const SingleNoteCard = ({setNoteList,noteList}) => {
                 </div>
                 <div className="buttons">
                     <div className="edit-btn"><Link to={linkTarget} >Edit</Link></div>
-                    <button className="archive-btn" onClick={addArchive}>Archive</button>
+                    {
+                        dataFilter[0].completed==="notCompleted" ? <button ref={archive}  className="archive-btn" onClick={addArchive}>Archive</button>
+                            : <button ref={archive} className="archive-btn active" onClick={addArchive}>Archive</button>
+                    }
                 </div>
-
             </div>
         );
     }
