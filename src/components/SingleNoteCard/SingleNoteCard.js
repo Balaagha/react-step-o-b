@@ -1,9 +1,10 @@
-import React,{useRef} from 'react';
+import React, {useRef, useState} from 'react';
 import {Link} from "react-router-dom";
 import {useParams,useHistory } from 'react-router-dom';
 import Preloader from "../Preloader/Preloader";
 import "./SingleNoteCard.scss";
 const SingleNoteCard = ({setNoteList,noteList}) => {
+    const [modalState,setModalState] = useState(false);
     const history = useHistory();
     const archive = useRef();
     let dataFilter = '';
@@ -50,6 +51,9 @@ const SingleNoteCard = ({setNoteList,noteList}) => {
                     }
                 );
         };
+        const toggleWindow=()=>{
+            setModalState(!modalState);
+        };
         return (
             <div className="single-note-container">
                 <div style={{backgroundColor: dataFilter[0].colors.bg}} className="single-note-item">
@@ -62,7 +66,18 @@ const SingleNoteCard = ({setNoteList,noteList}) => {
                         dataFilter[0].completed==="notCompleted" ? <button ref={archive}  className="archive-btn" onClick={addArchive}>Archive</button>
                             : <button ref={archive} className="archive-btn active" onClick={addArchive}>Archive</button>
                     }
-                    <div onClick={deleteNote} className="edit-btn"><a>delete</a></div>
+                    <div onClick={toggleWindow} className="edit-btn"><a>delete</a></div>
+                    {
+                        modalState ?
+                            <div className="contain">
+                            <div className="modal-window">
+                                <div>Do you want to delete this note?</div>
+                                <button onClick={deleteNote}>delete</button>
+                                <button onClick={toggleWindow}>cancel</button>
+                            </div>
+                            </div>
+                            :null
+                    }
                 </div>
             </div>
         );
