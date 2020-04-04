@@ -149,6 +149,16 @@
         "bg": "#FFF2CC"
       },
       "id": "ZmOxw4H"
+    },
+    {
+      "completed": "notCompleted",
+      "noteTitle": "dasd",
+      "noteText": "dsadasd",
+      "colors": {
+        "border": "#B6D4AC",
+        "bg": "#D5E8D4"
+      },
+      "id": "x5DI9bj"
     }
   ]
 }

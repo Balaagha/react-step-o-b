@@ -1,7 +1,6 @@
 import React,{useState,useRef} from 'react';
 import {useHistory } from 'react-router-dom'
-import axios from 'axios';
-import './Create.scss'
+import './Create.scss';
 const Create = (props) => {
     const {setNoteList,noteList} = props;
     const history = useHistory();
@@ -22,12 +21,20 @@ const Create = (props) => {
     const formSubmitHandler = (e)=>{
         e.preventDefault();
         const sendReq = {...state.data,colors:state.colors}
-        axios.post('http://localhost:3003/posts',sendReq)
-            .then(respond => {
-                dataNode.push(respond.data);
-                setNoteList(dataNode);
-                history.push('/');
-            });
+        try {
+            fetch('http://localhost:3003/posts', {
+                headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+                method: 'POST', body: JSON.stringify(sendReq)
+            }).then(r => r.json())
+                .then(respond => {
+                    if (Object.keys(respond).length>0){
+                        dataNode.push(respond);
+                        setNoteList(dataNode);
+                        history.push('/');
+                    }
+                    else{history.push('/error')}
+                });
+        }catch (e) { console.log(e)}
     }
     const colorsClickHandler=(e)=>{
         e.preventDefault();
@@ -47,7 +54,7 @@ const Create = (props) => {
     }
     return (
         <div className={'container'}>
-            <h1>Fill Data</h1>
+            <h1>Fill Datsa</h1>
             <form onSubmit={formSubmitHandler} onChange={formChangeHandle} className={'crate-form'}>
                 <div className={"form-control"}>
                     <input name={"noteTitle"} type="text"   placeholder="Note Title"/>
@@ -61,7 +68,7 @@ const Create = (props) => {
                         <button data-border={'#B6D4AC'} data-bg={'#D5E8D4'} onClick={colorsClickHandler} className={'green btn'}/>
                         <button data-border={'#A3B9D8'} data-bg={'#DAE8FC'} onClick={colorsClickHandler} className={'blue btn'}/>
                         <button data-border={'#EDD899'} data-bg={'#FFF2CC'} onClick={colorsClickHandler} className={'yellow btn'}/>
-                        <button data-border={'#A3B9D8'} data-bg={'#F8CECC'} onClick={colorsClickHandler} className={'red btn'}/>
+                        <button data-border={'#B85450'} data-bg={'#F8CECC'} onClick={colorsClickHandler} className={'red btn'}/>
                     </div>
                 </div>
                 <div className="form-control">
