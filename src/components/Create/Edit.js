@@ -10,7 +10,7 @@ const Edit = ({setNoteList,noteList} ) => {
         if (noteList.length > 0 ){
             dataFilter = noteList.filter(item=>item.id===id)[0];
             setState({
-                data:{ completed: dataFilter.completed, noteTitle: dataFilter.noteTitle, noteText: dataFilter.noteText,id:dataFilter.id },
+                data:{ completed: "notCompleted", noteTitle: dataFilter.noteTitle, noteText: dataFilter.noteText,id:dataFilter.id },
                 colors: {  border: dataFilter.colors.border, bg: dataFilter.colors.bg  },
                 submitState:false
             });
@@ -29,7 +29,7 @@ const Edit = ({setNoteList,noteList} ) => {
                     dataNode=dataNode.filter(item=>item.id!==state.data.id);
                     dataNode.push(respond);
                     setNoteList(dataNode);
-                    history.push('/');
+                    history.push(`/notes/${state.data.id}`);
                 }
                 else{history.push('/error')}
             });
