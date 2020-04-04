@@ -5,12 +5,14 @@ import NoteCard from "../NoteCard/NoteCard";
 class NoteList extends Component {
     render() {
        const notes=this.props.data;
-       const cards=notes.map((note)=>{
+       const cards=notes.map((note, index)=>{
         return (
             <NoteCard
+                key={index}
                 noteColor={note.colors}
                 noteTitle={note.noteTitle}
                 noteText={note.noteText}
+                noteId={note.id}
             />
         );
        }

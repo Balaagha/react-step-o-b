@@ -1,0 +1,41 @@
+.single-note-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.buttons{
+  display: flex;
+  flex-direction: column;
+  margin: 0 40px;
+  justify-content: space-evenly;
+}
+.button{display: flex;align-items: center;min-width: 200px;justify-content: space-evenly;
+  a{text-decoration: none;color: black;padding: 10px 60px;border: 1px solid black;border-radius: 4px;}
+  a.active{background-color: #d5e8d4;border-color: #82b366}
+}
+.single-note-item{
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: 40px;
+  min-height: 500px;
+
+}
+.header{
+  height: 60px;
+  margin: 0;
+  color: white;
+  font-size: 1.5em;
+  font-weight: bold;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  text-align: center;
+}
+.content{
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  flex-direction: row;
+  padding: 30px;
+  font-size: 1.25em;
+}
