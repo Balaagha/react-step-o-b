@@ -9,6 +9,7 @@ class NoteList extends Component {
         return (
             <NoteCard
                 key={index}
+                completed={note.completed}
                 noteColor={note.colors}
                 noteTitle={note.noteTitle}
                 noteText={note.noteText}
