@@ -1,9 +1,10 @@
 import React,{useRef} from 'react';
 import {Link} from "react-router-dom";
-import {useParams } from 'react-router-dom';
+import {useParams,useHistory } from 'react-router-dom';
 import Preloader from "../Preloader/Preloader";
 import "./SingleNoteCard.scss";
 const SingleNoteCard = ({setNoteList,noteList}) => {
+    const history = useHistory();
     const archive = useRef();
     let dataFilter = '';
     console.log(noteList);
@@ -36,6 +37,19 @@ const SingleNoteCard = ({setNoteList,noteList}) => {
                     });
             }
         };
+        const deleteNote=()=>{
+            fetch(`http://localhost:3003/posts/${dataFilter[0].id}`, {
+                method: 'delete'
+            })
+                .then(response => response.json())
+                .then(
+                    respond => {
+                        let dataSend = noteList.filter(item=>item.id!==dataFilter[0].id);
+                        setNoteList(dataSend);
+                        history.push('/');
+                    }
+                );
+        };
         return (
             <div className="single-note-container">
                 <div style={{backgroundColor: dataFilter[0].colors.bg}} className="single-note-item">
@@ -48,6 +62,7 @@ const SingleNoteCard = ({setNoteList,noteList}) => {
                         dataFilter[0].completed==="notCompleted" ? <button ref={archive}  className="archive-btn" onClick={addArchive}>Archive</button>
                             : <button ref={archive} className="archive-btn active" onClick={addArchive}>Archive</button>
                     }
+                    <div onClick={deleteNote} className="edit-btn"><a>delete</a></div>
                 </div>
             </div>
         );
