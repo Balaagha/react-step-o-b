@@ -9,10 +9,27 @@
   margin: 0 40px;
   justify-content: space-evenly;
 }
-.button{display: flex;align-items: center;min-width: 200px;justify-content: space-evenly;
-  a{text-decoration: none;color: black;padding: 10px 60px;border: 1px solid black;border-radius: 4px;}
+.edit-btn{
+  display: inline-block;
+  width: 200px;
+  a{
+    display: flex;align-items: center;justify-content: space-evenly;text-decoration: none;color: black;padding: 10px 60px;border: 1px solid black;border-radius: 4px;}
   a.active{background-color: #d5e8d4;border-color: #82b366}
 }
+.archive-btn{
+  display: flex;
+  align-items: center;
+ height: 43px;
+  justify-content: space-evenly;
+  text-decoration: none;
+  color: black;
+  padding: 10px 60px;
+  border: 1px solid black;
+  border-radius: 4px;
+  background-color: white;
+  cursor: pointer;
+}
+
 .single-note-item{
   display: flex;
   flex-direction: column;
