@@ -1,3 +1,54 @@
+.modal{
+  width: 30%;
+  padding:0 0 50px ;
+  background-color: lightblue;
+  align-items: center;
+  border-radius: 5px;
+  text-align: center;
+  margin: auto;
+  &-contain{
+    display: block;
+    position: fixed;
+    padding-top: 15%;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0 ,0 ,0 , 0.5);
+    z-index: 50;
+  }
+  &-header{
+    width: 100%;
+    padding: 15px 0;
+    background-color: rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-evenly;
+    font-size: 23px;
+    color:gray;
+  }
+  &.close{
+    font-size: 25px;
+    background: transparent;
+    outline: none;
+    border: none;
+    color: lightslategrey;
+  }
+  &.modaltext{
+    width: 80%;
+    text-align: center;
+    font-size: 19px;
+    margin: 20px auto;
+    color: white;
+    line-height: 40px;
+  }
+  &.btn{
+    margin: 30px 16px;
+    padding: 11px 0px;
+    width: 13%;
+    outline: none;
+    border: none;
+  }
+}
 .single-note-container{
   display: flex;
   flex-direction: row;
