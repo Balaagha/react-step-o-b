@@ -29,7 +29,7 @@ const Edit = ({setNoteList,noteList} ) => {
                     dataNode=dataNode.filter(item=>item.id!==state.data.id);
                     dataNode.push(respond);
                     setNoteList(dataNode);
-                    history.push('/');
+                    history.push(`/notes/${state.data.id}`);
                 }
                 else{history.push('/error')}
             });
