@@ -1,0 +1,54 @@
+{
+  "posts": [
+    {
+      "completed": "Completed",
+      "noteTitle": "dasdaa",
+      "noteText": "sad",
+      "colors": {
+        "border": "#B6D4AC",
+        "bg": "#D5E8D4"
+      },
+      "id": "unique-1"
+    },
+    {
+      "completed": "Completed",
+      "noteTitle": "Goy renkli",
+      "noteText": "lorem dasd lore asd  ssaesd",
+      "colors": {
+        "border": "#A3B9D8",
+        "bg": "#DAE8FC"
+      },
+      "id": "unique-2"
+    },
+    {
+      "completed": "notCompleted",
+      "noteTitle": "sari renkli",
+      "noteText": "lorem dasd lore asd  ssaesd",
+      "colors": {
+        "border": "#EDD899",
+        "bg": "#FFF2CC"
+      },
+      "id": "unique-3"
+    },
+    {
+      "completed": "notCompleted",
+      "noteTitle": "qirmizi renkli",
+      "noteText": "lorem",
+      "colors": {
+        "border": "#B85450",
+        "bg": "#F8CECC"
+      },
+      "id": "unique-4"
+    },
+    {
+      "completed": "notCompleted",
+      "noteTitle": "sdasd",
+      "noteText": "dasdsa",
+      "colors": {
+        "border": "#B6D4AC",
+        "bg": "#D5E8D4"
+      },
+      "id": "pG_Fz4G"
+    }
+  ]
+}
