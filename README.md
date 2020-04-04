@@ -3,7 +3,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
-
+### `Json server`
+in jsonserver folder you can run with this comand -> npm run json:server.
+Json server work 3003 port.
 ### `npm start`
 
 Runs the app in the development mode.<br />

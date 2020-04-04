@@ -49,6 +49,26 @@
         "bg": "#D5E8D4"
       },
       "id": "pG_Fz4G"
+    },
+    {
+      "completed": "notCompleted",
+      "noteTitle": "deisdi",
+      "noteText": "dsada",
+      "colors": {
+        "border": "#EDD899",
+        "bg": "#FFF2CC"
+      },
+      "id": "tomum3O"
+    },
+    {
+      "completed": "notCompleted",
+      "noteTitle": "sadsa",
+      "noteText": "sadsadasdas",
+      "colors": {
+        "border": "#A3B9D8",
+        "bg": "#DAE8FC"
+      },
+      "id": "oZjImIe"
     }
   ]
 }
